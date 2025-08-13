@@ -1,6 +1,6 @@
 package org.kodigo.swagger_librery.swagger.repository;
 
-import com.biblioteca.api.entity.Libro;
+import org.kodigo.swagger_librery.swagger.entity.Libro;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
