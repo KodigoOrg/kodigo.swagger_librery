@@ -35,6 +35,8 @@ public class Autor {
     @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Libro> libros;
 
+//    @Version
+//    private Long version;
     // Constructores
     public Autor() {}
 
@@ -61,4 +63,12 @@ public class Autor {
 
     public List<Libro> getLibros() { return libros; }
     public void setLibros(List<Libro> libros) { this.libros = libros; }
+
+//    public Long getVersion() {
+//        return version;
+//    }
+//
+//    public void setVersion(Long version) {
+//        this.version = version;
+//    }
 }

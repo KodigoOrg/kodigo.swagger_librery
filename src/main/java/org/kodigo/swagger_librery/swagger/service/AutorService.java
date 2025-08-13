@@ -28,12 +28,8 @@ public class AutorService {
         return convertirADTO(autor);
     }
 
-
     public AutorDTO crear(AutorDTO autorDTO){
-        if (autorRepository.existsByNombreIgnoreCaseAndApellidosIgnoreCase(autorDTO.getNombre(), autorDTO.getApellidos())){
-            throw new RuntimeException("Ya existe un author con el mismo nombre y apellido");
-        }
-
+        // La validación de unicidad se debe manejar con una restricción UNIQUE en la entidad.
         Autor autor = convertirAEntidad(autorDTO);
         Autor saveAuthor = autorRepository.save(autor);
         return convertirADTO(saveAuthor);
@@ -43,14 +39,8 @@ public class AutorService {
         Autor authorExistente = autorRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Author no encontrado con Id:" + id));
 
-        if (!authorExistente.getNombre().equalsIgnoreCase(autorDTO.getNombre()) ||
-            !authorExistente.getApellidos().equalsIgnoreCase(autorDTO.getApellidos())
-        ){
-            if (autorRepository.existsByNombreIgnoreCaseAndApellidosIgnoreCase(autorDTO.getNombre(), autorDTO.getApellidos())){
-                throw new RuntimeException("Ya existe un author con el mismo nombre y apellido.");
-            }
-        }
-
+        // Asigna directamente los valores del DTO a la entidad existente.
+        // La validación de unicidad se maneja con la restricción de la base de datos.
         authorExistente.setNombre(autorDTO.getNombre());
         authorExistente.setApellidos(autorDTO.getApellidos());
         authorExistente.setFechaNacimiento(autorDTO.getFechaNacimiento());
@@ -67,13 +57,16 @@ public class AutorService {
         autorRepository.deleteById(id);
     }
 
-
     private Autor convertirAEntidad(AutorDTO dto) {
         Autor autor = new Autor();
-        autor.setId(dto.getId());
+        if (dto.getId() != null && dto.getId() > 0) {
+            autor.setId(dto.getId());
+        }
         autor.setNombre(dto.getNombre());
         autor.setApellidos(dto.getApellidos());
         autor.setFechaNacimiento(dto.getFechaNacimiento());
+        // CORRECCIÓN: Agregar el mapeo para nacionalidad
+        autor.setNacionalidad(dto.getNacionalidad());
         return autor;
     }
 
@@ -84,7 +77,8 @@ public class AutorService {
         dto.setApellidos(autor.getApellidos());
         dto.setFechaNacimiento(autor.getFechaNacimiento());
         dto.setNacionalidad(autor.getNacionalidad());
-        dto.setCantidadLibros(autor.getLibros().size());
+        // CORRECCIÓN: Se podría añadir una verificación si la lista es nula o vacía
+        dto.setCantidadLibros(autor.getLibros() != null ? autor.getLibros().size() : 0);
         return dto;
     }
 }
