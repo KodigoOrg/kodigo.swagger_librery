@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 @Service
 @Transactional
-public class autorService {
+public class AutorService {
     @Autowired
     private AutorRepository autorRepository;
 
