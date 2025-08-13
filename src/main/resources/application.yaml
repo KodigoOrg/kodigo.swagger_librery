@@ -19,3 +19,11 @@ spring:
     console:
       enabled: true
 
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operationsSorter: method
+#    operationsSorter: alpha # alfabético por defecto
+#    operationsSorter: none # sin ordenación
