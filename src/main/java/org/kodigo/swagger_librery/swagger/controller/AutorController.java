@@ -78,57 +78,5 @@ public class AutorController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    // Aquí puedes agregar los endpoints para los query methods si lo deseas
 }
 
-
-//
-//import io.swagger.v3.oas.annotations.Parameter;
-//import jakarta.validation.Valid;
-//import org.kodigo.swagger_librery.swagger.dto.AutorDTO;
-//import org.kodigo.swagger_librery.swagger.service.AutorService;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.http.HttpStatus;
-//import org.springframework.http.HttpStatusCode;
-//import org.springframework.http.ResponseEntity;
-//import org.springframework.web.bind.annotation.*;
-//
-//import java.util.List;
-//
-//@RestController
-//@RequestMapping("/api/autores")
-//public class AutorController {
-//
-//    @Autowired
-//    private AutorService autorService;
-//
-//    @GetMapping
-//    public ResponseEntity<List<AutorDTO>> getAllAutores(){
-//        return ResponseEntity.ok(autorService.obtenerTodos());
-//    }
-//
-//    @GetMapping("/{id}")
-//    public ResponseEntity<AutorDTO> getAutorById(@PathVariable Long id){
-//        return ResponseEntity.ok(autorService.obtenerPorId(id));
-//    }
-//
-//    @PostMapping
-//    public ResponseEntity<AutorDTO> createAuthor(@Valid @RequestBody AutorDTO autorDTO){
-//        return new ResponseEntity<>(autorService.crear(autorDTO), HttpStatus.CREATED);
-////        return new ResponseEntity<>(autorService.crear(autorDTO), HttpStatusCode.valueOf(201));
-//    }
-//
-//    @PutMapping("/{id}")
-//    public ResponseEntity<AutorDTO> updateAutor(
-//            @PathVariable Long id,
-//            @Valid @RequestBody AutorDTO autorDTO) {
-//        return ResponseEntity.ok(autorService.actualizar(id, autorDTO));
-//    }
-//
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<Void> deleteAutor(@PathVariable Long id) {
-//        autorService.eliminar(id);
-//        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-//    }
-//}
-//

@@ -1,4 +1,5 @@
-package org.kodigo.swagger_librery.swagger.config;
+package org.kodigo.swagger_librery.swagger.controller;
+
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
