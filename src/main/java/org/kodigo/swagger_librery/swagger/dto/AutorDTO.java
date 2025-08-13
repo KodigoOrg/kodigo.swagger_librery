@@ -1,47 +1,39 @@
-package entity;
+package org.kodigo.swagger_librery.swagger.dto;
 
-import jakarta.persistence.*;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
-import java.util.List;
 
-@Entity
-@Table(name = "autores")
-public class Autor {
+@Schema(description = "Datos de un autor")
+public class AutorDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(description = "ID único del autor", example = "1")
     private Long id;
 
     @NotBlank(message = "El nombre del autor es obligatorio")
     @Size(min = 2, max = 100, message = "El nombre debe tener entre 2 y 100 caracteres")
-    @Column(nullable = false, length = 100)
+    @Schema(description = "Nombre del autor", example = "Gabriel", required = true)
     private String nombre;
 
     @NotBlank(message = "Los apellidos del autor son obligatorios")
     @Size(min = 2, max = 100, message = "Los apellidos deben tener entre 2 y 100 caracteres")
-    @Column(nullable = false, length = 100)
+    @Schema(description = "Apellidos del autor", example = "García Márquez", required = true)
     private String apellidos;
 
-    @Column(name = "fecha_nacimiento")
+    @Schema(description = "Fecha de nacimiento", example = "1927-03-06")
     private LocalDate fechaNacimiento;
 
     @Size(max = 50, message = "La nacionalidad no puede exceder 50 caracteres")
-    @Column(length = 50)
+    @Schema(description = "Nacionalidad del autor", example = "Colombiana")
     private String nacionalidad;
 
-    @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Libro> libros;
+    @Schema(description = "Cantidad de libros publicados", example = "15")
+    private Integer cantidadLibros;
 
     // Constructores
-    public Autor() {}
-
-    public Autor(String nombre, String apellidos) {
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-    }
+    public AutorDTO() {}
 
     // Getters y Setters
     public Long getId() { return id; }
@@ -59,6 +51,6 @@ public class Autor {
     public String getNacionalidad() { return nacionalidad; }
     public void setNacionalidad(String nacionalidad) { this.nacionalidad = nacionalidad; }
 
-    public List<Libro> getLibros() { return libros; }
-    public void setLibros(List<Libro> libros) { this.libros = libros; }
+    public Integer getCantidadLibros() { return cantidadLibros; }
+    public void setCantidadLibros(Integer cantidadLibros) { this.cantidadLibros = cantidadLibros; }
 }

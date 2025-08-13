@@ -1,4 +1,4 @@
-package dto;
+package org.kodigo.swagger_librery.swagger.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
