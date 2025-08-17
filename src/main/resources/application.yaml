@@ -4,21 +4,29 @@ server:
 spring:
   application:
     name: swagger
+  cloud:
+    azure:
+      keyvault:
+        secret:
+          property-source:
+            - endpoint: ${AZURE_KEY_VAULT_URL}
   datasource:
-    url: jdbc:h2:mem:biblioteca
-    driver-class-name: org.h2.Driver
-    username: sa
-    password:
+    url: ${AZURE_DATABASE}
+    username: ${AZURE_USER_DATABASE}
+    password: ${AZURE_USER_PASSWORD}
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.SQLServerDialect
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     show-sql: true
     format-sql: true
-  h2:
-    console:
-      enabled: true
-
+azure:
+  keyvault:
+    tenant-id: ${AZURE_TENANT_ID}
+logging:
+  level:
+    org.springframework.jdbc.core: DEBUG
 springdoc:
   api-docs:
     path: /api-docs
